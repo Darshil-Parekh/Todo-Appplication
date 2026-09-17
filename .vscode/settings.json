@@ -1,0 +1,6 @@
+{
+    "code-runner.runInTerminal": false,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.saveFileBeforeRun": true,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt"
+}

@@ -84,7 +84,7 @@ function createTaskElement(tasktext) {
         const confirmed = confirm("Are you sure you want to delete this task?");
         if (confirmed) {
             li.remove();
-            tasks = tasks.filter(task => (typeof task === "object" ? task.text : task));
+            tasks = tasks.filter(task => (typeof task === "object" ? task.text : task) !== span.textContent);
             localStorage.setItem("tasks", JSON.stringify(tasks));
         }
     });

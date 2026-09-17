@@ -84,7 +84,7 @@ function createTaskElement(tasktext) {
         const confirmed = confirm("Are you sure you want to delete this task?");
         if (confirmed) {
             li.remove();
-            tasks = tasks.filter(t => (typeof t === "object" ? t.text : t) !== span.textContent);
+            tasks = tasks.filter(task => (typeof task === "object" ? task.text : task) !== span.textContent);
             localStorage.setItem("tasks", JSON.stringify(tasks));
         }
     });
@@ -98,7 +98,7 @@ function addTask() {
         return;
     }
 
-    // Save timestamp in localStorage object only
+
     let currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     let taskObj = {

@@ -2,5 +2,6 @@
     "code-runner.runInTerminal": false,
     "code-runner.clearPreviousOutput": true,
     "code-runner.saveFileBeforeRun": true,
-    "terminal.integrated.defaultProfile.windows": "Command Prompt"
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "liveServer.settings.port": 5501
 }

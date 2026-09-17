@@ -12,6 +12,11 @@ if (savedTasks !== null) {
     tasks.forEach(function(task) {
         // Backwards compatible whether task is an object or old plain string
         let text = typeof task === "object" ? task.text : task;
+        // Clean any old task that might have had the time attached to the text
+        if (typeof text === "string") {
+            text = text.replace(/\d{1,2}:\d{2}\s?(AM|PM|am|pm)$/i, "").trim();
+            if (typeof task === "object") task.text = text;
+        }
         createTaskElement(text);
     });
 }

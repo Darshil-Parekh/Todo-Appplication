@@ -12,15 +12,14 @@ if (savedTasks !== null) {
     tasks.forEach(function(task) {
         // Backwards compatible whether task is an object or old plain string
         let text = typeof task === "object" ? task.text : task;
-        let time = typeof task === "object" ? task.addedAt : "";
-        createTaskElement(text, time);
+        createTaskElement(text);
     });
 }
 
 console.log(tasks);
 
 // Helper function to create and display a task item
-function createTaskElement(tasktext, timeAdded) {
+function createTaskElement(tasktext) {
     let li = document.createElement("li");
     li.classList.add("task");
 
@@ -30,20 +29,8 @@ function createTaskElement(tasktext, timeAdded) {
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
 
-    // Text container holding task text and timestamp
-    let textContainer = document.createElement("div");
-    textContainer.classList.add("task-text-container");
-
     let span = document.createElement("span");
     span.textContent = tasktext;
-    textContainer.appendChild(span);
-
-    if (timeAdded) {
-        let timeSpan = document.createElement("small");
-        timeSpan.classList.add("task-time");
-        timeSpan.textContent = timeAdded;
-        textContainer.appendChild(timeSpan);
-    }
 
     let editButton = document.createElement("button");
     editButton.classList.add("edit-btn");
@@ -59,7 +46,7 @@ function createTaskElement(tasktext, timeAdded) {
     actions.appendChild(deleteButton);
 
     leftSection.appendChild(checkbox);
-    leftSection.appendChild(textContainer);
+    leftSection.appendChild(span);
 
     li.appendChild(leftSection);
     li.appendChild(actions);
@@ -103,7 +90,7 @@ function addTask() {
         return;
     }
 
-    // Format current time (e.g. "03:30 PM") and ISO timestamp
+    // Save timestamp in localStorage object only
     let currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     let taskObj = {
@@ -112,7 +99,7 @@ function addTask() {
         submittedAt: new Date().toISOString()
     };
 
-    createTaskElement(taskObj.text, taskObj.addedAt);
+    createTaskElement(taskObj.text);
 
     tasks.push(taskObj);
     localStorage.setItem("tasks", JSON.stringify(tasks));

@@ -81,9 +81,12 @@ function createTaskElement(tasktext) {
     });
 
     deleteButton.addEventListener("click", function() {
-        li.remove();
-        tasks = tasks.filter(t => (typeof t === "object" ? t.text : t) !== span.textContent);
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+        const confirmed = confirm("Are you sure you want to delete this task?");
+        if (confirmed) {
+            li.remove();
+            tasks = tasks.filter(t => (typeof t === "object" ? t.text : t) !== span.textContent);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
     });
 }
 
